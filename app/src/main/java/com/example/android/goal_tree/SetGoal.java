@@ -30,7 +30,7 @@ public class SetGoal extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_goal);
+        setContentView(R.layout.blank);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        settings= getPreferences(MODE_PRIVATE);
@@ -40,12 +40,10 @@ public class SetGoal extends ListActivity {
 //        UIHelper.displayText(this,R.id.goalPreview, path);
 
 
-
-    }
 //    1st step to user directory
 
 
-    public void setGoal (View v)  {
+//    public void setGoal (View v)  {
 ////        Button setGoalbutton = (Button) view;
 ////        startActivity(new Intent(getApplicationContext(), goalCalenderPicker.class));
 ////         Find the title of goal
@@ -80,13 +78,13 @@ public class SetGoal extends ListActivity {
 //        editor.putString(USERNAME, prefValue);
 //        editor.commit();
 //        UIHelper.displayText(this, R.id.goalPreview,"Preference text");
-        datasource= new GoalsDataSource(this);
+        datasource = new GoalsDataSource(this);
 //        just incase database is not opened
         datasource.open();
         createData();
 //        creates a list layout of goals
         List<Goal> goals = datasource.findAll();
-        if(goals.size()==0) {
+        if (goals.size() == 0) {
             createData();
             goals = datasource.findAll();
         }
@@ -95,8 +93,8 @@ public class SetGoal extends ListActivity {
                 android.R.layout.simple_list_item_1, goals);
         setListAdapter(adapter);
 
-
     }
+//    }
     public  void showGoalButton(View v) throws IOException {
 //              Log.i(LOGTAG, "Clicked show");
 //          String prefValue = settings.getString(USERNAME, "not Found");
