@@ -28,7 +28,7 @@ public class goaTreeDBOpenHelper extends SQLiteOpenHelper {
                     COLUMN_TITLE + " TEXT, " +
                     COLUMN_DESC + " TEXT, " +
                     COLUMN_SDATE + " TEXT, " +
-                    COLUMN_EDATE + " NUMERIC " +
+                    COLUMN_EDATE + " TEXT" +
                     ")";
 
 

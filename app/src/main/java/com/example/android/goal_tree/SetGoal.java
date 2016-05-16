@@ -1,11 +1,12 @@
 package com.example.android.goal_tree;
 
+import android.app.ListActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.example.android.goal_tree.db.GoalsDataSource;
 import com.example.android.goal_tree.model.Goal;
@@ -14,8 +15,9 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
-public class SetGoal extends AppCompatActivity {
+public class SetGoal extends ListActivity {
 
     public static final String LOGTAG="Goal-TREE_LOG";
     GoalsDataSource datasource;
@@ -30,7 +32,7 @@ public class SetGoal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_goal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 //        settings= getPreferences(MODE_PRIVATE);
 //
 //        File f= getFilesDir();
@@ -82,6 +84,17 @@ public class SetGoal extends AppCompatActivity {
 //        just incase database is not opened
         datasource.open();
         createData();
+//        creates a list layout of goals
+        List<Goal> goals = datasource.findAll();
+        if(goals.size()==0) {
+            createData();
+            goals = datasource.findAll();
+        }
+
+        ArrayAdapter<Goal> adapter = new ArrayAdapter<Goal>(this,
+                android.R.layout.simple_list_item_1, goals);
+        setListAdapter(adapter);
+
 
     }
     public  void showGoalButton(View v) throws IOException {
